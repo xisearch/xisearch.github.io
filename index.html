@@ -7,10 +7,11 @@
 function search(query) {
 $.getJSON("https://api.duckduckgo.com/?q=" + query + "&format=json&callback=?", function(data) {
 var results = data.Results;
-var html = "";
+var html = "<ul>";
 for (var i = 0; i < results.length; i++) {
-html += "<div><a href='" + results[i].FirstURL + "'>" + results[i].Text + "</a></div>";
+html += "<li><a href='" + results[i].FirstURL + "'>" + results[i].Text + "</a></li>";
 }
+html += "</ul>";
 $("#searchresults").html(html);
 });
 }
