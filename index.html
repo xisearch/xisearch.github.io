@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DuckDuckGo Search Bar</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function search(query) {
+$.getJSON("https://api.duckduckgo.com/?q=" + query + "&format=json&callback=?", function(data) {
+var results = data.Results;
+var html = "";
+for (var i = 0; i < results.length; i++) {
+html += "<div><a href='" + results[i].FirstURL + "'>" + results[i].Text + "</a></div>";
+}
+$("#searchresults").html(html);
+});
+}
+</script>
+</head>
+<body>
+<form onsubmit="search(document.getElementById('search').value); return false;">
+<label for="search">Search:</label>
+<input type="text" id="search" name="q">
+<input type="submit" value="Search">
+</form>
+<div id="searchresults"></div>
+</body>
+</html>
